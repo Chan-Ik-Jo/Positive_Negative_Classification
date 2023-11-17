@@ -8,7 +8,7 @@ from tensorflow.keras.preprocessing.text import one_hot
 from tensorflow.keras.layers import Dense, Dropout, LSTM, Embedding, GRU, SimpleRNN
 from tensorflow.keras.models import Sequential
 from tensorflow.python.keras.callbacks import EarlyStopping
-
+from data_read import get_data
 
 class Model():
     def __init__(self):
