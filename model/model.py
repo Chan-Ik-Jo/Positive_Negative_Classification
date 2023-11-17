@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 from tensorflow import keras
 from tensorflow.keras import layers as L
 from tensorflow.keras.layers import  Embedding
@@ -8,7 +9,6 @@ from tensorflow.keras.preprocessing.text import one_hot
 from tensorflow.keras.layers import Dense, Dropout, LSTM, Embedding, GRU, SimpleRNN
 from tensorflow.keras.models import Sequential
 from tensorflow.python.keras.callbacks import EarlyStopping
-from data_read import get_data
 
 class Model():
     def __init__(self):
@@ -22,7 +22,8 @@ class Model():
         # self.cnn_lstm.compile(optimizer = 'Adam', loss='binary_crossentropy', metrics=['acc'])
         pass
     def call_data(self):
-        train_input, train_label = get_data()
+        train_input= np.load('./model/save_data/train.npy')
+        train_label= np.load('./model/save_data/train_label.npy')
         print(train_input)
         print(train_label)
         
