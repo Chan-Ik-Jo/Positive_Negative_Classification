@@ -12,13 +12,21 @@ from data_read import get_data
 
 class Model():
     def __init__(self):
-        self.cnn_lstm = Sequential()
-        self.cnn_lstm.add(keras.layers.Embedding())
-        self.cnn_lstm.add(keras.layers.LSTM())
-        self.cnn_lstm.add(keras.layers.Conv1D())
-        self.cnn_lstm.add(keras.layers.MaxPool1D())
-        self.cnn_lstm.add(keras.layers.Dropout())
-        self.cnn_lstm.add(keras.layers.Dense(1, activation='sigmoid'))
-        self.cnn_lstm.compile(optimizer = 'Adam', loss='binary_crossentropy', metrics=['acc'])
+        # self.cnn_lstm = Sequential()
+        # self.cnn_lstm.add(keras.layers.Embedding())
+        # self.cnn_lstm.add(keras.layers.LSTM())
+        # self.cnn_lstm.add(keras.layers.Conv1D())
+        # self.cnn_lstm.add(keras.layers.MaxPool1D())
+        # self.cnn_lstm.add(keras.layers.Dropout())
+        # self.cnn_lstm.add(keras.layers.Dense(1, activation='sigmoid'))
+        # self.cnn_lstm.compile(optimizer = 'Adam', loss='binary_crossentropy', metrics=['acc'])
+        pass
+    def call_data(self):
+        train_input, train_label = get_data()
+        print(train_input)
+        print(train_label)
         
-    
+def main():
+    model = Model()
+    model.call_data()
+main()
