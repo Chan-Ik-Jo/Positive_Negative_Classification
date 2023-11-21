@@ -37,7 +37,8 @@ def onehot(data, VOCAB_SIZE = 5000):
   return [one_hot(words, VOCAB_SIZE) for words in data]
 
 def padding(onehot_text) :
-  return np.array(pad_sequences(onehot_text, padding="pre", maxlen = 25))
+    
+    return np.array(pad_sequences(onehot_text, padding="pre", maxlen = 25))
 
 def get_label(data):
     return np.array(data["label"])
