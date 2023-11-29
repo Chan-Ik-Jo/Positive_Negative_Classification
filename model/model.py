@@ -49,7 +49,6 @@ model = Model(train_input,train_label)
 model.model_frame()
 history = model.train()
 #%%
-
 import matplotlib.pyplot as plt
 plt.plot(history.history['loss'], 'y', label='train loss')
 plt.plot(history.history['val_loss'], 'r', label='val loss')
