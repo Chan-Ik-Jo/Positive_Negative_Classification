@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gaegu:300" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function submitForm(){
+            const formData = document.getElementById('client_str').value;
+            fetch(` http://127.0.0.1:8000/proc?client_str=${formData}`)
+            .then(function(res){
+                return res.json();
+            })
+            .then(function(json){
+                console.log(json['Response'])
+                res = json['Response'];
+
+                const pos_str = "%의 확률로 긍정입니다.";
+                const pos_arr = [...pos_str];
+                const nag_str = "%의 확률로 부정입니다.";
+                const nag_arr = [...nag_str];
+                var str = '';
+                text = document.getElementById("result_txt")
+
+                if(res>=50){
+                    document.getElementById("bono_1").src='./img/bono2.png';
+                    document.getElementById("bono_2").src='./img/bono4.png';
+                    document.getElementById("jogae_img").src='./img/jogae2.png';
+                    text.innerHTML = res; 
+                    let i = 0;
+                    let interval = setInterval(function() {
+                        if (i < pos_arr.length) {
+                            str += pos_arr[i];
+                            text.innerText = res + str;
+                            i++;
+                        } else {
+                            clearInterval(interval); 
+                        }
+                    }, 100);
+                    
+                }
+                else{
+                    document.getElementById("bono_2").src='./img/bono1.png';
+                    document.getElementById("bono_1").src='./img/bono3.png';
+                    document.getElementById("jogae_img").src='./img/jogae2.png';
+                    nag_res = 100 - res;
+                    text.innerHTML = nag_res; 
+                    let i = 0;
+                    let interval = setInterval(function() {
+                        if (i < nag_arr.length) {
+                            str += nag_arr[i];
+                            text.innerText = nag_res + str;
+                            i++;
+                        } else {
+                            clearInterval(interval); 
+                        }
+                    }, 100);
+                    
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="in">
+                <input class="in_text"type="text" name="client_str" id="client_str" placeholder="긍정인지 부정인지 궁금하신가요?"/>
+                <input class="in_btn" type="button" onclick="submitForm()" value="전송"/>
+        </div>
+    <div class="main_box">
+            <div class="mbox" id="bono_box1" style="border:1px solid transparent;">
+                <img src="./img/bono3.png" alt="" class="img1" id="bono_1" width="400px" height="400px">
+            </div>
+            <div class="mbox" id="result_box">
+                <div class="result1_box">
+                    <div id="text_box">
+                        <h1 >결과</h1>
+                        <span id="result_txt" style="font-size: 40px;">0%</span>
+                    </div>
+                    <div class="jogae_box">
+                        <img src="./img/jogae1.png" id="jogae_img" alt="" width="400px" height="400px">
+                    </div>
+                </div>
+            </div>
+            <div class="mbox" id="bono_box2">
+                <img src="./img/bono4.png" alt="" class="img1" id="bono_2" width="400px" height="400px">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
