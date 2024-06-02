@@ -14,7 +14,7 @@ model = tf.keras.models.load_model('../../model/best_model.h5')
 with open('../../model/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
     
-#dddd
+
 app = FastAPI()
 
 origins = [
